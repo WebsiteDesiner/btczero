@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpeg" href="photo_2025-01-03_23-02-31.jpg">
+    <link rel="shortcut icon" type="image/jpeg" href="photo_2025-01-03_23-02-31.jpg">
+    <title>Genesis Block Token</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0f1c;
+            color: #ffffff;
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(247, 147, 26, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(247, 147, 26, 0.1) 0%, transparent 60%);
+            animation: gradientMove 15s ease infinite alternate;
+            z-index: -1;
+        }
+
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 0%;
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                background-position: 100% 100%;
+                transform: scale(1);
+            }
+        }
+
+        .floating-btc {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .btc-symbol {
+            position: absolute;
+            opacity: 0.15;
+            animation: float 15s infinite linear;
+            color: #f7931a;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(180deg, rgba(26, 31, 46, 0.9) 0%, rgba(10, 15, 28, 0.8) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" stroke="%23f7931a" stroke-width="0.5" fill="none"/></svg>') center/50% repeat;
+            opacity: 0.1;
+            animation: rotate 60s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #f7931a, #ffd700);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 20px rgba(247, 147, 26, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(247, 147, 26, 0.5);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(247, 147, 26, 0.8),
+                             0 0 30px rgba(247, 147, 26, 0.6);
+            }
+        }
+
+        .intro-text {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(10, 15, 28, 0.8);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            line-height: 2.2;
+            font-size: 1.4rem;
+            text-align: left;
+            border: 1px solid rgba(247, 147, 26, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .intro-text p {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section {
+            background: rgba(10, 15, 28, 0.8);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(247, 147, 26, 0.2);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            border-color: #f7931a;
+            box-shadow: 0 8px 30px rgba(247, 147, 26, 0.15);
+        }
+
+        .section h2 {
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 1.5rem;
+            color: #f7931a;
+            font-size: 2.2rem;
+            letter-spacing: 1px;
+            background: linear-gradient(45deg, #f7931a, #ffd700);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 15px rgba(247, 147, 26, 0.4);
+            animation: titlePulse 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes titlePulse {
+            from {
+                transform: scale(1);
+            }
+            to {
+                transform: scale(1.03);
+            }
+        }
+
+        .hash-text {
+            font-family: 'Courier New', monospace;
+            word-break: break-all;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(247, 147, 26, 0.2);
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .hash-text:hover {
+            background: rgba(247, 147, 26, 0.1);
+            transform: translateX(10px);
+        }
+
+        nav {
+            background: rgba(10, 15, 28, 0.95);
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #f7931a;
+        }
+
+        nav a {
+            color: #ffffff;
+            margin: 0 20px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+            position: relative;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #f7931a;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            color: #f7931a;
+        }
+
+        .twitter-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 20px auto;
+            max-width: 1800px;
+            padding: 0 20px;
+        }
+
+        .twitter-tweet {
+            width: 100% !important;
+            min-width: unset !important;
+            max-width: unset !important;
+            margin: 0 !important;
+            height: 450px !important;
+        }
+
+        .twitter-tweet:hover {
+            transform: translateY(-5px);
+            border-color: rgba(247, 147, 26, 0.6) !important;
+            box-shadow: 0 8px 30px rgba(247, 147, 26, 0.2);
+        }
+
+        .twitter-tweet iframe {
+            width: 100% !important;
+            min-width: 100% !important;
+        }
+
+        @media (max-width: 1600px) {
+            .twitter-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .twitter-container {
+                grid-template-columns: 1fr;
+                max-width: 600px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .intro-text {
+                font-size: 1.1rem;
+            }
+
+            nav {
+                padding: 15px 10px;
+            }
+
+            nav a {
+                margin: 0 10px;
+                font-size: 0.9rem;
+            }
+
+            .twitter-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .twitter-tweet {
+                width: 100% !important;
+                min-width: 300px !important;
+                max-width: none !important;
+            }
+
+            .section h2 {
+                font-size: 1.8rem;
+            }
+
+            .intro-text {
+                font-size: 1.1rem;
+            }
+
+            ul li {
+                font-size: 1.1rem;
+            }
+
+            .hash-text {
+                font-size: 1rem;
+            }
+        }
+
+        ul li {
+            font-size: 1.2rem;
+            margin: 15px 0;
+            padding-left: 25px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        ul li::before {
+            content: '₿';
+            position: absolute;
+            left: 0;
+            color: #f7931a;
+            animation: rotateCoin 3s linear infinite;
+        }
+
+        @keyframes rotateCoin {
+            from {
+                transform: rotateY(0deg);
+            }
+            to {
+                transform: rotateY(360deg);
+            }
+        }
+
+        ul li:hover {
+            transform: translateX(10px);
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        }
+
+        /* 社交链接样式 */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(10, 15, 28, 0.9);
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .social-link {
+            display: inline-block;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .social-link img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(247, 147, 26, 0.3);
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(247, 147, 26, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .social-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .social-link img {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        /* 添加合约地址样式 */
+        .contract-address {
+            background: rgba(10, 15, 28, 0.9);
+            border-radius: 16px;
+            padding: 20px;
+            margin: 40px auto;
+            max-width: 800px;
+            text-align: center;
+            border: 1px solid rgba(247, 147, 26, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .contract-address h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: #f7931a;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+
+        .address-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+
+        .address-text {
+            font-family: 'Courier New', monospace;
+            color: #ffd700;
+            font-size: 1.1rem;
+            margin: 0;
+            word-break: break-all;
+        }
+
+        .copy-button {
+            background: #f7931a;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 15px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+        }
+
+        .copy-button:hover {
+            background: #ffd700;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(247, 147, 26, 0.3);
+        }
+
+        .copy-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(247, 147, 26, 0.9);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            transform: translateX(200%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .copy-notification.show {
+            transform: translateX(0);
+        }
+
+        @media (max-width: 768px) {
+            .contract-address {
+                margin: 20px 15px;
+            }
+            
+            .address-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .address-text {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Token</a>
+    </nav>
+
+    <header>
+        <h1>Genesis Block Token</h1>
+        <p>Inspired by Bitcoin's Genesis</p>
+        <div class="intro-text">
+            <p>January 3, 2009.<br>
+            Sixteen years ago.<br>
+            000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f.<br>
+            The first Bitcoin Transaction.<br>
+            The Genesis Block.<br>
+            The birth of a movement.<br>
+            And it all began with Bitcoin Zero.</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="section">
+            <h2>Bitcoin Genesis Block</h2>
+            <p class="hash-text">Hash: 000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f</p>
+            <h3>Genesis Wallet</h3>
+            <p class="hash-text">0x00000000000000000000000000000000000000000000000</p>
+        </div>
+
+        <div class="section">
+            <h2>Token Details</h2>
+            <ul>
+                <li>Name: Genesis Block Token</li>
+                <li>Symbol: BTCZERO</li>
+                <li>Network: Ethereum</li>
+                <li>Total Supply: 1,000,000</li>
+                <li>Tax: 0/0</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Related Tweets</h2>
+            <div class="twitter-container">
+                <blockquote class="twitter-tweet">
+                    <p lang="pt" dir="ltr">000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f</p>
+                    &mdash; Coinbase 🛡️ (@coinbase) 
+                    <a href="https://twitter.com/coinbase/status/1742621778630017449?ref_src=twsrc%5Etfw">January 3, 2024</a>
+                </blockquote>
+                <blockquote class="twitter-tweet">
+                    <p lang="pt" dir="ltr">000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f</p>
+                    &mdash; OKX (@okx) 
+                    <a href="https://twitter.com/okx/status/1875170247923102068?ref_src=twsrc%5Etfw">January 3, 2025</a>
+                </blockquote>
+                <blockquote class="twitter-tweet">
+                    <p lang="pt" dir="ltr">000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f</p>
+                    &mdash; Binance (@binance) 
+                    <a href="https://twitter.com/binance/status/1345616995551649793?ref_src=twsrc%5Etfw">January 3, 2021</a>
+                </blockquote>
+                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </div>
+        </div>
+    </div>
+
+    <div class="floating-btc">
+        <script>
+            function createBtcSymbols() {
+                const container = document.querySelector('.floating-btc');
+                const symbolCount = 10;
+                
+                for (let i = 0; i < symbolCount; i++) {
+                    const symbol = document.createElement('div');
+                    symbol.className = 'btc-symbol';
+                    symbol.innerHTML = '₿';
+                    symbol.style.left = `${Math.random() * 100}%`;
+                    symbol.style.fontSize = `${Math.random() * 30 + 20}px`;
+                    symbol.style.animationDelay = `${Math.random() * 15}s`;
+                    symbol.style.color = '#f7931a';
+                    container.appendChild(symbol);
+                }
+            }
+            
+            // 页面加载后创建符号
+            window.addEventListener('load', createBtcSymbols);
+        </script>
+    </div>
+
+    <div class="social-links">
+        <a href="https://t.me/TheFirstBitcoingenesisblockcoin" class="social-link telegram" target="_blank">
+            <img src="Tg.png" alt="Telegram">
+        </a>
+        <a href="www.x.com" class="social-link twitter" target="_blank">
+            <img src="twitter.png" alt="Twitter">
+        </a>
+        <a href="https://www.dextools.io/" class="social-link dextools" target="_blank">
+            <img src="Dextool.png" alt="Dextools">
+        </a>
+        <a href="https://dexscreener.com/" class="social-link dexscreener" target="_blank">
+            <img src="dexscreener.webp" alt="Dexscreener">
+        </a>
+        <a href="https://app.uniswap.org/" class="social-link uniswap" target="_blank">
+            <img src="uniswap_.png" alt="Uniswap">
+        </a>
+    </div>
+
+    <div class="contract-address">
+        <h3>Contract Address</h3>
+        <div class="address-container">
+            <p class="address-text" id="contract-address">0x4adEd4fBa9C69a0C2E3FEa662A1c2758960FaAEe</p>
+            <button class="copy-button" onclick="copyAddress()">Copy Address</button>
+        </div>
+    </div>
+
+    <div class="copy-notification" id="copy-notification">
+        Address copied to clipboard!
+    </div>
+
+    <script>
+    function copyAddress() {
+        const address = document.getElementById('contract-address').textContent;
+        navigator.clipboard.writeText(address).then(() => {
+            const notification = document.getElementById('copy-notification');
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 2000);
+        });
+    }
+    </script>
+</body>
+</html> 
